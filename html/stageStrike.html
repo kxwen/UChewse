@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang = "en">
+	
+<head>	
+	<title>UChewse Stage Strike</title>
+    <body bgcolor="#f9f9f9">
+    <link href= "stupid.css" type = "text/css" rel = "stylesheet"/>
+    <h1><center>
+       Click a given cuisine to strike it from possible final result
+    </h1></center>
+</head>
+
+<body>
+    
+<center>
+<button id="one" class = "btn large green rounded" onclick = changeColor(id)>Chinese</button>
+<button id="two" class = "btn large green rounded" onclick = changeColor(id)>Korean</button>
+<button id="three" class = "btn large green rounded" onclick = changeColor(id)>Vietnamese</button>
+<button id="four" class = "btn large green rounded" onclick = changeColor(id)>Japanese</button>
+<button id="five" class = "btn large green rounded" onclick = changeColor(id)>Borgor</button>
+</center>
+
+<script>
+function changeColor(id) {
+  document.getElementById(id).style.backgroundColor = "red";
+}
+/*document.getElementById('submit').onclick = function(){
+ this.style.backgroundColor = "red";
+}*/
+</script>
+
+
+</body>
+
+<ul>
+<li> my <A HREF="https://github.com/kxwen">github</A>
+<li> my <A HREF="mailto:kxwen@ucsc.edu">email</A>
+</ul>
+
+</html>
