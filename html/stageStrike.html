@@ -13,16 +13,54 @@
 <body>
     
 <center>
-<button id="one" class = "btn large green rounded" onclick = changeColor(id)>Chinese</button>
-<button id="two" class = "btn large green rounded" onclick = changeColor(id)>Korean</button>
-<button id="three" class = "btn large green rounded" onclick = changeColor(id)>Vietnamese</button>
-<button id="four" class = "btn large green rounded" onclick = changeColor(id)>Japanese</button>
-<button id="five" class = "btn large green rounded" onclick = changeColor(id)>Borgor</button>
+<button id="flag1" class = "btn large green rounded" onclick = "changeColor(id);switch1(id);checkFlags(id);">Chinese</button>
+<button id="flag2" class = "btn large green rounded" onclick = "changeColor(id);switch2(id);checkFlags(id);">Korean</button>
+<button id="flag3" class = "btn large green rounded" onclick = "changeColor(id);switch3(id);checkFlags(id);">Vietnamese</button>
+<button id="flag4" class = "btn large green rounded" onclick = "changeColor(id);switch4(id);checkFlags(id);">Japanese</button>
+<button id="flag5" class = "btn large green rounded" onclick = "changeColor(id);switch5(id);checkFlags(id);">Borgor</button>
 </center>
 
 <script>
 function changeColor(id) {
   document.getElementById(id).style.backgroundColor = "red";
+}
+var flag1 = false;
+var flag2 = false;
+var flag3 = false;
+var flag4 = false;
+var flag5 = false;
+var lastStriked;
+
+function switch1(id){
+  flag1 = true;
+  lastStriked = id;
+}
+
+function switch2(id){
+  flag2 = true;
+  lastStriked = id;
+}
+
+function switch3(id){
+  flag3 = true;
+  lastStriked = id;
+}
+
+function switch4(id){
+  flag4 = true;
+  lastStriked = id;
+}
+
+function switch5(id){
+  flag5 = true;
+  lastStriked = id;
+}
+
+function checkFlags(lastStriked){
+   if( flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true){
+      document.getElementById(lastStriked).style.backgroundColor = "#78fdeb";
+      document.getElementById(lastStriked).style.color = "black";
+   }
 }
 </script>
 
