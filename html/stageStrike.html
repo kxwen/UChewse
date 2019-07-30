@@ -14,59 +14,126 @@
 <body>
     
 <center>
-<button id="op1" class = "btn large green rounded" onclick = "changeColor(id);switch1(id);checkFlags(id);">Chinese</button>
-<button id="op2" class = "btn large green rounded" onclick = "changeColor(id);switch2(id);checkFlags(id);">Korean</button>
-<button id="op3" class = "btn large green rounded" onclick = "changeColor(id);switch3(id);checkFlags(id);">Vietnamese</button>
-<button id="op4" class = "btn large green rounded" onclick = "changeColor(id);switch4(id);checkFlags(id);">Japanese</button>
-<button id="op5" class = "btn large green rounded" onclick = "changeColor(id);switch5(id);checkFlags(id);">Borgor</button>
+<button id="Chinese Restaurants" class = "btn large green rounded" onclick = "changeColor(id);switch1(id);checkFlags(id);">Chinese</button>
+<button id="Korean Restaurants" class = "btn large green rounded" onclick = "changeColor(id);switch2(id);checkFlags(id);">Korean</button>
+<button id="Vietnamese Restaurants" class = "btn large green rounded" onclick = "changeColor(id);switch3(id);checkFlags(id);">Vietnamese</button>
+<button id="Japanese Restaurants" class = "btn large green rounded" onclick = "changeColor(id);switch4(id);checkFlags(id);">Japanese</button>
+<button id="Burger Restaurants" class = "btn large green rounded" onclick = "changeColor(id);switch5(id);checkFlags(id);">Borgor</button>
 </center>
 
-<script>
-function changeColor(id) {
-  document.getElementById(id).style.backgroundColor = "red";
-}
-var flag1 = false;
-var flag2 = false;
-var flag3 = false;
-var flag4 = false;
-var flag5 = false;
-var lastStriked;
 
-function switch1(id){
-  flag1 = true;
-  lastStriked = id;
-}
+<meta name="viewport" content="initial-scale=1.0">
+<meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 75%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 90%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+    
+      var map;
+      var service;
+      var infowindow;
+      
+      
 
-function switch2(id){
-  flag2 = true;
-  lastStriked = id;
-}
+    function initMap() {
+        var pyrmont = new google.maps.LatLng(-33.8665433,151.1956316);
 
-function switch3(id){
-  flag3 = true;
-  lastStriked = id;
-}
+        map = new google.maps.Map(document.getElementById('map'), {
+              center: pyrmont,
+              zoom: 15
+         });
 
-function switch4(id){
-  flag4 = true;
-  lastStriked = id;
-}
+        var request = {
+           location: pyrmont,
+           radius: '1000',
+           query: lastStriked
+        };
 
-function switch5(id){
-  flag5 = true;
-  lastStriked = id;
-}
+        service = new google.maps.places.PlacesService(map);
+        service.textSearch(request, callback);
+     }
 
-function checkFlags(lastStriked){
-   if( flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true){
-      document.getElementById(lastStriked).style.backgroundColor = "#78fdeb";
-      document.getElementById(lastStriked).style.color = "black";
+    function callback(results, status) {
+      console.log(status);
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+        for (var i = 0; i < results.length; i++) {
+          var place = results[i];
+          createMarker(results[i]);
+        }
+      }
+    }
+    
+    function createMarker(place) {
+
+       new google.maps.Marker({
+           position: place.geometry.location,
+           map: map
+       });
+    }
+    
+    function changeColor(id) {
+       document.getElementById(id).style.backgroundColor = "red";
+    }
+    var flag1 = false;
+    var flag2 = false;
+    var flag3 = false;
+    var flag4 = false;
+    var flag5 = false;
+    var lastStriked;
+
+    function switch1(id){
+       flag1 = true;
+       lastStriked = id;
+    }
+
+    function switch2(id){
+      flag2 = true;
+      lastStriked = id;
+    }
+
+    function switch3(id){
+      flag3 = true;
+      lastStriked = id;
+    }
+
+    function switch4(id){
+      flag4 = true;
+      lastStriked = id;
+    }
+
+   function switch5(id){
+      flag5 = true;
+      lastStriked = id;
    }
-}
-</script>
 
+   function checkFlags(lastStriked){
+      if( flag1 == true && flag2 == true && flag3 == true && flag4 == true && flag5 == true){
+         document.getElementById(lastStriked).style.backgroundColor = "#78fdeb";
+         document.getElementById(lastStriked).style.color = "black";
+         initMap();
+      }
+   }
+    
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1JWNI5svY_ZsMaagoGnxBKCAgfvIgaxA&libraries=places&callback=initMap"
+    async defer></script>
+  </body>
 
 </body>
+
 
 <ul>
 <li> my <A HREF="https://github.com/kxwen">github</A>
